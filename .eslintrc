@@ -3,7 +3,7 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
-    "prettier"
+    // "prettier"
   ],
   "plugins": ["react-hooks"],
   "env": {
