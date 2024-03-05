@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div>
         <h3>Home Page</h3>
-        <Link to="/Starred">Go to starred Page</Link>
+        {/* <Link to="/Starred">Go to starred Page</Link> */}
     </div>);
 };
 
