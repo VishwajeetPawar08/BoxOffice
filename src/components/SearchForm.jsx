@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const SearchForm = (onSearch) => {
+const SearchForm = ({onSearch}) => {
   const [searchStr, setSearchStr] = useState('');
   const [searchOption, setSearchOption] = useState('shows');
   const onRadioChange = ev => {
@@ -19,7 +19,7 @@ const SearchForm = (onSearch) => {
         searchOption
     }
 
-    onSearch(options)
+    onSearch(options);
   };
 
   return (
