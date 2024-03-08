@@ -2,23 +2,14 @@
 // import Starred from './Starred';
 import { useState } from 'react';
 import { searchForPeople, searchForShows } from '../api/tvmaze';
+import SearchForm from '../components/SearchForm';
 
 const Home = () => {
-  const [searchStr, setSearchStr] = useState('');
   const [apiData, setApiData] = useState([]);
   const [apiDataError, setApiDataError] = useState(null);
-  const [searchOption, setSearchOption] = useState('shows');
 
-  const onRadioChange = ev => {
-    setSearchOption(ev.target.value);
-  };
-
-  const onSetSearchInputChange = ev => {
-    setSearchStr(ev.target.value);
-  };
-
-  const onSearch = async ev => {
-    ev.preventDefault(); //preventDeafault will help us to stop redirecting
+  const onSearch = async (q, searchOption) => {
+    // ev.preventDefault(); //preventDeafault will help us to stop redirecting
 
     // const response = await fetch(`https://api.tvmaze.com/search/shows?q=${searchStr}`);
     // const body = await response.json();
@@ -29,13 +20,16 @@ const Home = () => {
     try {
       setApiDataError(null);
 
+      let result;
+
       if (searchOption == 'shows') {
-        const result = await searchForShows(searchStr);
+        result = await searchForShows(q);
         setApiData(result);
       } else {
-        const result = await searchForPeople(searchStr);
-        setApiData(result);
+        result = await searchForPeople(q);
       }
+      setApiData(result);
+      
     } catch (error) {
       setApiDataError(error);
     }
@@ -46,7 +40,7 @@ const Home = () => {
       return <div>ERROR OCCURED: {apiDataError.message}</div>;
     }
 
-    if (apiData) {
+    if (apiData && apiData.length > 0) {
       return apiData[0].show
         ? apiData.map(data => <div key={data.show.id}>{data.show.name}</div>)
         : apiData.map(data => (
@@ -59,40 +53,9 @@ const Home = () => {
 
   return (
     <div>
-      <form onSubmit={onSearch}>
-        <input
-          type="text"
-          value={searchStr}
-          onChange={onSetSearchInputChange}
-        />
-        {/* value is used to make two way data binding */}
+      <SearchForm onSearch={onSearch} />
 
-        <label>
-          Shows
-          <input
-            type="radio"
-            value="shows"
-            name="search-option"
-            checked={searchOption === 'shows'}
-            onChange={onRadioChange}
-          />
-        </label>
-
-        <label>
-          Actors
-          <input
-            type="radio"
-            value="actors"
-            name="search-option"
-            checked={searchOption === 'actors'}
-            onChange={onRadioChange}
-          />
-        </label>
-
-        <button type="submit">Search</button>
-
-        <div>{renderApiData()}</div>
-      </form>
+      <div>{renderApiData()}</div>
     </div>
   );
 };
