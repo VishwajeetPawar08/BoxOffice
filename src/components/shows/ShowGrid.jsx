@@ -11,7 +11,7 @@ const ShowGrid = ({ shows }) => {
           image={
             data.show.image
               ? data.show.image.medium
-              : '/public/image-not-found.png'
+              : '/image-not-found.png'
           }
           summary={data.show.summary}
         />
