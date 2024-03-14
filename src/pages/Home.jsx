@@ -8,14 +8,16 @@ import ActorsGrid from '../components/actors/ActorsGrid';
 import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
-
   const [filter, setFilter] = useState(null);
-
+ 
   const { data: apiData, error: apiDataError } = useQuery({
     queryKey: ['search', filter],
-    queryFn: () => filter.searchOption === 'shows' ? searchForShows(filter.q) : searchForPeople(filter.q),
+    queryFn: () =>
+      filter.searchOption === 'shows'
+        ? searchForShows(filter.q)
+        : searchForPeople(filter.q),
     enabled: !!filter,
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
 
   // const [apiData, setApiData] = useState(null);
@@ -49,7 +51,7 @@ const Home = () => {
 
     // ----
 
-    setFilter({q, searchOption});
+    setFilter({ q, searchOption });
   };
 
   const renderApiData = () => {
