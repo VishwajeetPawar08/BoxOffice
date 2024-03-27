@@ -17,7 +17,7 @@ const Starred = () => {
   });
 
   if (starredShows?.length === 0) {
-    return <TextCenter></TextCenter>;
+    return <TextCenter>NO STARRED SHOWS...</TextCenter>;
   }
 
   if (starredShows?.length > 0) {

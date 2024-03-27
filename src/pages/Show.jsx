@@ -48,7 +48,8 @@ const Show = () => {
     return (
       <ShowPageWrapper>
         <BackHomeWrapper>
-        <Link to="/">Go back to home</Link>
+          <Link to="/">Go back to home</Link> 
+          {/* when we hit go back to home then results should be visible as prior */}
         </BackHomeWrapper>
 
         <ShowMainData

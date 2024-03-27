@@ -1,0 +1,4 @@
+1. Grid 10 to 16
+2. search result should be their after hiting back button in show detail's page
+3. dark mode
+4. 
