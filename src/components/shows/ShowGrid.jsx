@@ -2,6 +2,7 @@
 import ShowCard from './ShowCard';
 import { useStarredShows } from '../../lib/useStarredShows';
 import { FlexGrid } from '../common/FlexGrid';
+import NotFoundImage from '../../lib/image-not-found.png'
 // const usePersistedReducer = (reducer, initialState, localStorageKey) => {
 //   const [state, dispatch] = useReducer(reducer, initialState, initial => {
 //     const persistedValue = localStorage.getItem(localStorageKey);
@@ -48,7 +49,7 @@ const ShowGrid = ({ shows }) => {
           id={data.show.id}
           name={data.show.name}
           image={
-            data.show.image ? data.show.image.medium : '/image-not-found.png'
+            data.show.image ? data.show.image.medium : NotFoundImage
           }
           summary={data.show.summary}
           onStarMeClick={onStarMeClick}
